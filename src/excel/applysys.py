@@ -6,13 +6,13 @@ def process_excel(file_path):
     # Procesa el excel leyendo los datos y generando el objeto para 
     # el envio del email
     
-    mail_username = "pagomispromos@scanntech.com"
-    mail_password = "promo2020"
+    mail_username = # Tomar datos de variable de entorno
+    mail_password = # Tomar datos de variable de entorno
     email_server = SendEmail(
         username = mail_username,
         sender = mail_username,
         password = mail_password,
-        mail_server = "correo.scanntech.com",
+        mail_server = # Tomar datos de variable de entorno,
         mail_port = 465
     )
     excel = xlrd.open_workbook(filename=file_path)
