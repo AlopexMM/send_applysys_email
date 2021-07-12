@@ -1,18 +1,30 @@
-from .mail.Mail import SendEmail
 import xlrd
 import datetime
+import os
+import sys
+from .mail.Mail import SendEmail
 
 def process_excel(file_path):
     # Procesa el excel leyendo los datos y generando el objeto para 
     # el envio del email
-    
-    mail_username = # Tomar datos de variable de entorno
-    mail_password = # Tomar datos de variable de entorno
+    try:
+        config_file = os.path.join(os.getenv('HOME'),'applysys_config.cfg')
+        with open(config_file,'r') as config:
+            for line in config.readlines():
+                cfg = line.replace('\n','').split('=')
+                if cfg[0] == 'username':
+                    mail_username = cfg[1]
+                if cfg[0] == 'password':
+                    mail_password = cfg[1]
+                if cfg[0] == 'server':
+                    server = cfg[1]
+    except Exception as e:
+        print(e)
     email_server = SendEmail(
         username = mail_username,
         sender = mail_username,
         password = mail_password,
-        mail_server = # Tomar datos de variable de entorno,
+        mail_server = server,
         mail_port = 465
     )
     excel = xlrd.open_workbook(filename=file_path)
