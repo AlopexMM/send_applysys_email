@@ -1,2 +1,1 @@
-from .excel import applysys
-from .mail import Mail
+from .main_window import main
