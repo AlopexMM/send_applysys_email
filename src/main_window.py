@@ -22,6 +22,7 @@ class App(QtWidgets.QMainWindow, Ui_MainWindow):
     def search_file(self):
         self.fname = QFileDialog.getOpenFileName(self,'Open File',os.getenv('HOME'), 'Excel 2007 file (*.xls)')
         self.filename.setText(self.fname[0])
+        self.status_label.setText('Listo para procesar')
 
     def send_emails(self):
         if self.fname[0] != '':

@@ -32,7 +32,9 @@ def process_excel(file_path):
     for row in range(5,sheet.nrows):
         data = {}
         for col in range(sheet.ncols):
-            if col == 1:
+            if col == 0:
+                data['cod_cliente'] = sheet.cell_value(row,col)
+            elif col == 1:
                 data['tipo_doc'] = sheet.cell_value(row, col)
             elif col == 2:
                 data['serie'] = sheet.cell_value(row, col)
@@ -71,17 +73,17 @@ Descargue el programa Acrobat Reader para Visualizar su factura: http://get.adob
 Atentamente.
 
 Departamento de Facturación IPOSS SA Migueletes 1231 – 3A 1426 - Ciudad de Buenos Aires"""
-
-        for email in data['emails']:
-            if email == '':
-                continue
-            else:
-                email_server.send_email(
-                    body = text,
-                    recipent = email,
-                    subject = "Factura",
-                    attach = data['archivo'],
-                )
+        if data['cod_cliente'] != 'INDUSTRIA':
+            for email in data['emails']:
+                if email == '':
+                    continue
+                else:
+                    email_server.send_email(
+                        body = text,
+                        recipent = email,
+                        subject = "Factura",
+                        attach = data['archivo'],
+                    )
 
 if __name__ == '__main__':
 
