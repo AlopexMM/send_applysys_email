@@ -4,3 +4,4 @@ build/
 *.spec
 __pycache__/
 pyvenv.cfg
+.mypy_cache/

@@ -3,11 +3,11 @@ import datetime
 import os
 from .mail.Mail import SendEmail
 
-def process_excel(file_path):
+def process_excel(file_path, home_path):
     # Procesa el excel leyendo los datos y generando el objeto para 
     # el envio del email
     try:
-        config_file = os.path.join(os.getenv('HOME'),'applysys_config.cfg')
+        config_file = os.path.join(home_path,'applysys_config.cfg')
         with open(config_file,'r') as config:
             for line in config.readlines():
                 cfg = line.replace('\n','').split('=')

@@ -5,7 +5,7 @@ from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
 
-qtCreatorFile = os.path.join(os.getcwd(),'src/ui/main_window.ui')
+qtCreatorFile = os.path.join(os.getcwd(),'app/ui/main_window.ui')
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class App(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -15,18 +15,23 @@ class App(QtWidgets.QMainWindow, Ui_MainWindow):
         self.setupUi(self)
         self.select_excel_button.clicked.connect(self.search_file)
         self.send_emails_button.clicked.connect(self.send_emails)
+        if os.getenv('OS') == 'Windows_NT':
+            self.home = os.getenv('HOMEPATH')
+        else:
+            self.home = os.getenv('HOME')
     
     def show_window(self):
         return self.show()
 
     def search_file(self):
-        self.fname = QFileDialog.getOpenFileName(self,'Open File',os.getenv('HOME'), 'Excel 2007 file (*.xls)')
+        
+        self.fname = QFileDialog.getOpenFileName(self,'Open File',self.home, 'Excel 2007 file (*.xls)')
         self.filename.setText(self.fname[0])
         self.status_label.setText('Listo para procesar')
 
     def send_emails(self):
         if self.fname[0] != '':
-            process_excel(self.fname[0])
+            process_excel(self.fname[0],home_path=self.home)
         self.status_label.setText('Procesado!!!')
             
 def main():
