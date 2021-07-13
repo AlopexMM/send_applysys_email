@@ -1,11 +1,11 @@
 import sys
 import os
-from .excel.applysys import process_excel
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
+from excel.applysys import process_excel
 
 
-qtCreatorFile = os.path.join(os.getcwd(),'app/ui/main_window.ui')
+qtCreatorFile = os.path.join(os.getcwd(),'ui/main_window.ui')
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class App(QtWidgets.QMainWindow, Ui_MainWindow):
