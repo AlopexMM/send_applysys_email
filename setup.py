@@ -14,6 +14,6 @@ setup(
     ],
     packages=["src"],
     include_package_data=True,
-    install_requires=["xlrd","pycairo","PyGobject"],
+    install_requires=["xlrd","pyqt5","pyqt5-tools"],
     entry_points={"console_scripts":["alopexmm=src.__main__:main"]},
 )

@@ -1,11 +1,11 @@
 import sys
 import os
-import excel
+from . import excel
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
 
-qtCreatorFile = os.path.join(os.getcwd(),'ui/main_window.ui')
+qtCreatorFile = os.path.join(os.getcwd(),'src/ui/main_window.ui')
 Ui_MainWindow, QtBaseClass = uic.loadUiType(qtCreatorFile)
 
 class App(QtWidgets.QMainWindow, Ui_MainWindow):
@@ -25,7 +25,7 @@ class App(QtWidgets.QMainWindow, Ui_MainWindow):
 
     def send_emails(self):
         if self.fname[0] != '':
-            excel.process_excel(self.fname[0])
+            excel.applysys.process_excel(self.fname[0])
         self.status_label.setText('Procesado!!!')
             
 def main():
