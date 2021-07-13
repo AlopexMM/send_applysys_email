@@ -1,1 +1,0 @@
-from .mail.Mail import SendEmail

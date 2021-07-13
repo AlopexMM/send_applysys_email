@@ -1,7 +1,6 @@
 import xlrd
 import datetime
 import os
-import sys
 from .mail.Mail import SendEmail
 
 def process_excel(file_path):
